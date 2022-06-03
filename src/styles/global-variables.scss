@@ -1,0 +1,40 @@
+:root {
+  // blue colors
+
+  // white colors
+  --white-001: #fff;
+  --white-002: #f5f5f5;
+
+  // red colors
+  --primaryHover: #d6436a;
+  --primaryColor: #f85072;
+  // black colors
+  --black-001: #000;
+
+  // gray colors
+  --gray-001: #ececec;
+  --gray-002: #aaa;
+  --gray-003: #dadada;
+  --gray-004: #333;
+  --gray-005: #444;
+  --gray-006: #e4e4e4;
+  --gray-007: #ddd;
+  --gray-008: #838383;
+  --gray-009: rgb(118, 118, 118);
+  // pink colors
+
+  // green colors
+  --green-001: #02d2c8;
+  // purple colors
+
+  // brown colors
+  --brown-001: #444;
+  // biege colors
+
+  // Box shadow variables
+  --gray-bs-30: rgb(0 0 0 / 30%);
+
+  --border-radius: 5px;
+  --box-shadow-hard: 0 5px 20px rgb(0 0 0 / 30%);
+  --box-shadow-soft: 0 1px 6px rgb(0 0 0 / 28%);
+}
