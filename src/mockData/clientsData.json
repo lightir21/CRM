@@ -16,8 +16,8 @@
       },
       "relatedClients": [
         {
-          "id": 9,
-          "name": "שושי"
+          "id": 3,
+          "name": "יגאל"
         }
       ],
 
@@ -64,7 +64,151 @@
         }
       ],
       "permenantMissions": [
-        { "text": "למלות טופס 101" },
+        { "text": "למלא טופס 101" },
+        { "text": "לשלוח מייל תודה" },
+        { "text": "ביטול הביטוח בעוד חודש" }
+      ]
+    },
+    {
+      "id": 1,
+      "details": {
+        "name": "שמעון",
+        "clientId": 3254856,
+        "addrress": "דרך עכו 385, קרית ביאליק",
+        "email": "shimon@yahoo.com",
+        "phone": "057862354",
+        "birthdate": "12/05/1977",
+        "role": "employee",
+        "smokes": false,
+        "health": "good",
+        "status": "cancel"
+      },
+      "relatedClients": [],
+
+      "notes": [
+        {
+          "title": "צריך להחזיר תשובה",
+          "text": "יכול להיות שיחזור"
+        },
+        {
+          "title": "פתח חשבון",
+          "text": "התחיל את חשבונו במסלול.."
+        }
+      ],
+
+      "files": [
+        {
+          "link": "dfhfghjghj/dfsgdfgs/",
+          "name": "תמונת החברה",
+          "date": "12/05/2021"
+        }
+      ],
+      "products": [
+        {
+          "company": "אלטשולר שחם",
+          "category": "ביטוח",
+          "product": "ביטוח חיים",
+          "startingDate": "01/10/2020",
+          "productStatus": "ביטול",
+          "price": 100,
+          "policyNumber": 22222,
+          "notes": [
+            {
+              "title": "לבטל",
+              "text": "ביקש לבטל בהקדם האפשרי"
+            },
+            {
+              "title": "מתלבת",
+              "text": "לא בטוח אם להמשיך את הפוליסה"
+            }
+          ]
+        }
+      ],
+      "changableMissions": [
+        {
+          "text": "לשלוח מייל בנוגע לביטוח"
+        },
+        {
+          "text": "לשלוח מייל בנוגע לביטוח"
+        },
+        {
+          "text": "לשלוח מייל בנוגע לביטוח"
+        }
+      ],
+      "permenantMissions": [
+        { "text": "למלא טופס 101" },
+        { "text": "לשלוח מייל תודה" },
+        { "text": "ביטול הביטוח בעוד חודש" }
+      ]
+    },
+    {
+      "id": 2,
+      "details": {
+        "name": "יגאל",
+        "clientId": 7352584,
+        "addrress": "שד המגינים 219, קרית ים",
+        "email": "yigal@yahoo.com",
+        "phone": "052654853",
+        "birthdate": "24/08/1990",
+        "role": "employee",
+        "smokes": false,
+        "health": "good",
+        "status": "new"
+      },
+      "relatedClients": [],
+
+      "notes": [
+        {
+          "title": "נפתח בקשה לפנסיה",
+          "text": "נפתחה בקשה באלטשולר מחכה לתשובתם "
+        },
+        {
+          "title": "פתח חשבון",
+          "text": "התחיל את חשבונו במסלול.."
+        }
+      ],
+
+      "files": [
+        {
+          "link": "dfhfghjghj/dfsgdfgs/",
+          "name": "תמונת החברה",
+          "date": "17/06/2022"
+        }
+      ],
+      "products": [
+        {
+          "company": "כלל",
+          "category": "ביטוח",
+          "product": "בריאות",
+          "startingDate": "01/10/2020",
+          "productStatus": "חדש",
+          "price": 100,
+          "policyNumber": 33333,
+          "notes": [
+            {
+              "title": "הקמה",
+              "text": "להקים במערכת כלל ולהודיע ללקוח"
+            },
+            {
+              "title": "למנה סוכן",
+              "text": "לבחור סוכן מתאים ב-כלל"
+            }
+          ]
+        }
+      ],
+      "changableMissions": [
+        {
+          "text": "לשלוח מייל בנוגע לביטוח"
+        },
+        {
+          "text": "לשלוח מייל בנוגע לביטוח"
+        },
+        {
+          "text": "לשלוח מייל בנוגע לביטוח"
+        }
+      ],
+      "permenantMissions": [
+        { "text": "למלא טופס 101" },
         { "text": "לשלוח מייל תודה" },
         { "text": "ביטול הביטוח בעוד חודש" }
       ]
