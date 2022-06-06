@@ -1,9 +1,10 @@
 .filter {
-  box-shadow: var(--box-shadow-soft);
   font-size: 1.8rem;
   display: flex;
   justify-content: space-around;
   margin: 2rem;
+  margin-bottom: 0;
   padding: 1rem 0;
   background-color: var(--white-001);
+  border-bottom: 1px solid var(--gray-008);
 }
