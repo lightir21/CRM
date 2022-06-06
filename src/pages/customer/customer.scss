@@ -1,9 +1,83 @@
 .customer {
   margin: 1rem;
   box-shadow: var(--box-shadow-hard);
+  display: flex;
+  flex-direction: column;
+
+  &__tabs {
+    font-size: 2.4rem;
+    font-weight: 600;
+    display: flex;
+    margin-bottom: 1rem;
+  }
+
+  &__tab {
+    color: var(--gray-005);
+    background-color: #fff;
+    padding: 1rem;
+    cursor: pointer;
+    width: max-content;
+    box-shadow: var(--box-shadow-soft);
+    &.active {
+      background-color: inherit;
+      box-shadow: none;
+    }
+  }
 
   &__subtitles {
     color: var(--gray-002);
-    font-size: 1.8rem;
+    font-size: 2.4rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__container {
+    display: flex;
+  }
+
+  &__right {
+    flex: 1;
+  }
+
+  &__left {
+    flex: 1;
+  }
+
+  &__clientStatus {
+    display: flex;
+    font-size: 2.2rem;
+    gap: 1rem;
+    box-shadow: var(--box-shadow-hard);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    &-box {
+      position: relative;
+      cursor: pointer;
+    }
+
+    &-icon {
+      fill: rgb(0, 0, 71);
+      &-num {
+        font-size: 1.4rem;
+        position: absolute;
+        text-align: center;
+        bottom: -0.2rem;
+        right: -0.8rem;
+        color: #fff;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        background-color: red;
+      }
+    }
+
+    &-select {
+      background-image: url("../../assets/down-arrow-svgrepo-com.svg");
+      background-repeat: no-repeat;
+      background-position: left;
+      background-size: 1.5rem;
+      padding-left: 1rem;
+    }
   }
 }
