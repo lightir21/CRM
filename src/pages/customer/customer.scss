@@ -1,4 +1,9 @@
 .customer {
   margin: 1rem;
   box-shadow: var(--box-shadow-hard);
+
+  &__subtitles {
+    color: var(--gray-002);
+    font-size: 1.8rem;
+  }
 }

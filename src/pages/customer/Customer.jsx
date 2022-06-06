@@ -18,6 +18,9 @@ const Customer = () => {
             <option value="מבוטל">מבוטל</option>
           </select>
         </div>
+        <div className="customer__contact">
+          <h3 className="customer__subtitles">פרטי לקוח</h3>
+        </div>
       </div>
       <div className="customer__left"></div>
     </div>
