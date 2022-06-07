@@ -13,6 +13,7 @@ import CustomerClientStatus from "../../components/customerClientStatus/Customer
 import CustomerContactInfo from "../../components/customerContactInfo/CustomerContactInfo";
 import CustomerContacts from "../../components/customerContacs/CustomerContacts";
 import CustomerInfo from "../../components/customerInfo/CustomerInfo";
+import CustomerNotes from "../../components/customerNotes/CustomerNotes";
 
 const Customer = () => {
   return (
@@ -31,7 +32,7 @@ const Customer = () => {
           <CustomerContacts />
         </div>
       </div>
-      <div className={style.notes}>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+      <CustomerNotes />
     </div>
   );
 };
