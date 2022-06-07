@@ -14,6 +14,8 @@ import CustomerContactInfo from "../../components/customerContactInfo/CustomerCo
 import CustomerContacts from "../../components/customerContacs/CustomerContacts";
 import CustomerInfo from "../../components/customerInfo/CustomerInfo";
 import CustomerNotes from "../../components/customerNotes/CustomerNotes";
+import CustomerCommonQuestions from "../../components/customerCommonQuestions/CustomerCommonQuestions";
+import CustomerCommonMsgs from "../../components/customerCommonMsgs/CustomerCommonMsgs";
 
 const Customer = () => {
   return (
@@ -32,7 +34,8 @@ const Customer = () => {
           <CustomerContacts />
         </div>
       </div>
-      <CustomerNotes />
+      <CustomerCommonQuestions />
+      <CustomerCommonMsgs />
     </div>
   );
 };

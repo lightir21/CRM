@@ -5,7 +5,7 @@ const CustomerInfo = () => {
   return (
     <div className={style.customerInfo}>
       <h2 className={style.name}>ישראל ישראלי</h2>
-      <p className={style.id}>תז:322055321</p>
+      <p className={style.id}>תז: 322055321</p>
       <hr />
       <p className={style.birthDate}>
         ת.לידה: <strong>15/15/1991</strong>
@@ -16,7 +16,7 @@ const CustomerInfo = () => {
       <p className={style.address}>
         כתובת: <strong>הנביאים 7 טבריה</strong>
       </p>
-      <p className={style.gender}></p>
+      <p className={style.gender}>מין: זכר</p>
       <hr />
       <p className={style.status}>
         סטטוס עבודה: <strong>שכיר</strong>
