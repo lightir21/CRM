@@ -1,0 +1,19 @@
+.contacts {
+  background-color: #fff;
+  box-shadow: var(--box-shadow-hard);
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  padding: 1rem;
+  flex: 1;
+}
+
+.subtitles {
+  color: var(--gray-002);
+  font-size: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}

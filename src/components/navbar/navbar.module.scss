@@ -4,10 +4,10 @@
   width: 100%;
 
   justify-content: space-between;
-  &__right {
+  .right {
     display: flex;
     font-size: 1.8rem;
-    &-text {
+    .text {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -15,22 +15,22 @@
       margin-left: 5rem;
     }
 
-    &-button {
+    .button {
       display: flex;
       align-items: center;
       cursor: pointer;
     }
   }
 
-  &__notification {
+  .notification {
     position: relative;
     cursor: pointer;
-    &-icon {
+    .icon {
       font-size: 2.4rem;
       fill: var(--gray-004);
     }
 
-    &-num {
+    .num {
       position: absolute;
       font-size: 1.3rem;
       top: -20%;

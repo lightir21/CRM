@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
 
-  &__container {
+  .container {
     width: 80%;
     height: 80%;
     border-radius: 12px;
@@ -16,7 +16,7 @@
     align-items: center;
   }
 
-  &__login {
+  .login {
     background-color: #ecececfa;
     width: 30%;
     height: 60%;
@@ -40,16 +40,16 @@
       margin-bottom: 2rem;
     }
 
-    &-form {
-      &-box {
+    .form {
+      .box {
         display: flex;
         gap: 2rem;
         margin-bottom: 2rem;
       }
-      &-label {
+      .label {
         font-size: 1.8rem;
       }
-      &-input {
+      .input {
         border-bottom: 1px solid var(--gray-002);
         border-radius: 2px;
       }

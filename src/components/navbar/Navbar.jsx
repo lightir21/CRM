@@ -1,21 +1,21 @@
 import React from "react";
-import "./navbar.scss";
+import style from "./navbar.module.scss";
 import { BsBell, BsPlus } from "react-icons/bs";
 const Navbar = () => {
   return (
-    <div className="navbar">
-      <div className="navbar__right">
-        <p className="navbar__right-text">
-          לקוחות<span className="navbar__right-num">7</span>
+    <div className={style.navbar}>
+      <div className={style.right}>
+        <p className={style.text}>
+          לקוחות<span className={style.num}>7</span>
         </p>
 
-        <button className="navbar__right-button">
+        <button className={style.button}>
           הוסף לקוח <BsPlus />
         </button>
       </div>
-      <div className="navbar__notification">
-        <BsBell className="navbar__notification-icon" />
-        <span className="navbar__notification-num">3</span>
+      <div className={style.notification}>
+        <BsBell className={style.icon} />
+        <span className={style.num}>3</span>
       </div>
     </div>
   );

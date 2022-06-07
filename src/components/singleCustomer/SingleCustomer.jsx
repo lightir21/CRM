@@ -1,5 +1,5 @@
 import React from "react";
-import "./singleCustomer.scss";
+import style from "./singleCustomer.module.scss";
 import { AiOutlineMail } from "react-icons/ai";
 import { TbBrandTelegram } from "react-icons/tb";
 
@@ -9,27 +9,27 @@ const SignleCustomer = ({ data }) => {
 
   if (data) {
     return (
-      <div className="singleCustomer">
-        <div className="singleCustomer__item-name">
+      <div className={style.singleCustomer}>
+        <div className={style.name}>
           <p>{name}</p>
         </div>
-        <div className="singleCustomer__item-id">
+        <div className={style.id}>
           <p>{clientId}</p>
         </div>
-        <div className="singleCustomer__item-address">
+        <div className={style.address}>
           <p>{addrress}</p>
         </div>
-        <div className="singleCustomer__item-email">
+        <div className={style.email}>
           <p> {email} </p>
         </div>
-        <div className="singleCustomer__item-phone">
+        <div className={style.phone}>
           <p>{phone}</p>
         </div>
-        <div className="singleCustomer__icon-box">
-          <AiOutlineMail className="singleCustomer__icon" />
-          <TbBrandTelegram className="singleCustomer__icon" />
+        <div className={style.iconBox}>
+          <AiOutlineMail className={style.icon} />
+          <TbBrandTelegram className={style.icon} />
         </div>
-        <button className="singleCustomer__button">מעבר לדף לקוח</button>
+        <button className={style.button}>מעבר לדף לקוח</button>
       </div>
     );
   }

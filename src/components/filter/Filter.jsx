@@ -1,9 +1,9 @@
 import React from "react";
-import "./filter.scss";
+import style from "./filter.module.scss";
 
 const Filter = () => {
   return (
-    <div className="filter">
+    <div className={style.filter}>
       <button>חודש</button>
       <button>שם</button>
       <button>מוצר</button>
