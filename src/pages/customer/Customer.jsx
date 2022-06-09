@@ -16,6 +16,7 @@ import CustomerInfo from "../../components/customerInfo/CustomerInfo";
 import CustomerNotes from "../../components/customerNotes/CustomerNotes";
 import CustomerCommonQuestions from "../../components/customerCommonQuestions/CustomerCommonQuestions";
 import CustomerCommonMsgs from "../../components/customerCommonMsgs/CustomerCommonMsgs";
+import CurstomerFiles from "../../components/customerFiles/CurstomerFiles";
 
 const Customer = () => {
   return (
@@ -36,6 +37,7 @@ const Customer = () => {
       </div>
       <CustomerCommonQuestions />
       <CustomerCommonMsgs />
+      <CurstomerFiles />
     </div>
   );
 };

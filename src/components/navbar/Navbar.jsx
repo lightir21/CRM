@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./navbar.module.scss";
 import { BsBell, BsPlus } from "react-icons/bs";
-const Navbar = () => {
+import NewCustomer from "../newCustomer/NewCustomer";
+const Navbar = ({ setIsPopupOpen, isPopupOpen }) => {
   return (
     <div className={style.navbar}>
       <div className={style.right}>
@@ -9,7 +10,10 @@ const Navbar = () => {
           לקוחות<span className={style.num}>7</span>
         </p>
 
-        <button className={style.button}>
+        <button
+          className={style.button}
+          onClick={() => setIsPopupOpen(!isPopupOpen)}
+        >
           הוסף לקוח <BsPlus />
         </button>
       </div>
