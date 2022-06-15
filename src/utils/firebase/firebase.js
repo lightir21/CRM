@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDo } from "firebase/firestore";
 
 import {
   getAuth,
@@ -19,9 +20,13 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
+export const db = getFirestore(firebaseApp);
 
-export const signup = (email, password) => {
-  createUserWithEmailAndPassword(auth, email, password)
+export const signup = async (email, password, confirmPassword) => {
+  if (!email || !password) return;
+  if (password !== confirmPassword) return;
+
+  return await createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
       console.log("user creater:", cred);
     })
@@ -32,11 +37,9 @@ export const signIn = (email, password) => {
   signInWithEmailAndPassword(auth, email, password);
 };
 
-export const logOut = () => {
-  signOut(auth)
+export const logOut = async () => {
+  return await signOut(auth)
     .then(console.log("the user logged out"))
-    .then((cred) => {
-      console.log("user creater:", cred);
-    })
+
     .catch((err) => console.log(err.message));
 };
