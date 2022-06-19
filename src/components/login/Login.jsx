@@ -1,10 +1,8 @@
-import React from "react";
 import { useState } from "react";
-import style from "./login.module.scss";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../../utils/redux/loginSlice";
-import { authChange } from "../../utils/firebase/firebase";
-import { useEffect } from "react";
+import { logout } from "../../utils/redux/logoutSlice.js";
+import style from "./login.module.scss";
 
 const initialState = {
   email: "",
@@ -31,8 +29,6 @@ const Login = ({ setIsRegistered }) => {
     setValues(initialState);
     e.target.reset();
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div className={style.login}>
@@ -68,6 +64,7 @@ const Login = ({ setIsRegistered }) => {
       <button className={style.btn} onClick={() => setIsRegistered(false)}>
         אין לך משתמש? הרשם
       </button>
+      <button onClick={() => dispatch(logout())}>התנתק</button>
     </div>
   );
 };

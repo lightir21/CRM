@@ -3,11 +3,14 @@
   padding: 1.4rem 4rem;
   width: 100%;
   position: relative;
+  align-items: center;
 
   justify-content: space-between;
   .right {
     display: flex;
     font-size: 1.8rem;
+    align-items: center;
+
     .text {
       display: flex;
       flex-direction: column;

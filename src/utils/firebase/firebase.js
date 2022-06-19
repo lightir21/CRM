@@ -15,6 +15,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -41,12 +42,10 @@ export const signup = async (email, password, confirmPassword) => {
 };
 
 export const signIn = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password).then((userCred) => {
-    const { user } = userCred;
-  });
+  signInWithEmailAndPassword(auth, email, password);
 };
 
-export const logOut = async () => {
+export const logOutUser = async () => {
   return await signOut(auth)
     .then(console.log("the user logged out"))
 
@@ -58,8 +57,4 @@ export const db = getFirestore(firebaseApp);
 export const createAdminDocumentFromAuth = async (uid, email) => {
   const adminsColRef = collection(db, "admins");
   const docRef = await addDoc(adminsColRef, { uid, email });
-};
-
-export const authChange = () => {
-  onAuthStateChanged(auth, (user) => console.log(user));
 };

@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import style from "./navbar.module.scss";
 import { BsBell, BsPlus } from "react-icons/bs";
 import NewCustomer from "../newCustomer/NewCustomer";
+import { logout } from "../../utils/redux/logoutSlice.js";
+import { useDispatch } from "react-redux";
+
 const Navbar = ({ setIsPopupOpen, isPopupOpen }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={style.navbar}>
       <div className={style.right}>
+        <button className={style.text} onClick={() => dispatch(logout())}>
+          התנתק
+        </button>
         <p className={style.text}>
           לקוחות<span className={style.num}>7</span>
         </p>
