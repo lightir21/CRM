@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signup } from "../firebase/firebase";
+import { createAdminDocumentFromAuth, signup } from "../firebase/firebase";
 
 const initialState = {
   email: "",
   password: "",
   confirmPassword: "",
+  uid: "",
 };
 
 export const signupSlice = createSlice({
@@ -17,6 +18,9 @@ export const signupSlice = createSlice({
         action.payload.password,
         action.payload.confirmPassword
       );
+    },
+    addDoc: (state, action) => {
+      createAdminDocumentFromAuth();
     },
   },
 });

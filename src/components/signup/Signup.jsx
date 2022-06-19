@@ -21,12 +21,11 @@ const Signup = ({ setIsRegistered }) => {
     setValues({ ...values, [name]: value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const { email, password, confirmPassword } = values;
 
     dispatch(signUpUser({ email, password, confirmPassword }));
-
     setValues(initialState);
     e.target.reset();
   };

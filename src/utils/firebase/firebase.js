@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDo } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  getDoc,
+} from "firebase/firestore";
 
 import {
   getAuth,
@@ -20,7 +27,6 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
-export const db = getFirestore(firebaseApp);
 
 export const signup = async (email, password, confirmPassword) => {
   if (!email || !password) return;
@@ -29,12 +35,15 @@ export const signup = async (email, password, confirmPassword) => {
   return await createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
       console.log("user creater:", cred);
+      createAdminDocumentFromAuth(cred.user.uid, email);
     })
     .catch((err) => console.log(err.message));
 };
 
 export const signIn = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password);
+  signInWithEmailAndPassword(auth, email, password).then((userCred) => {
+    const { user } = userCred;
+  });
 };
 
 export const logOut = async () => {
@@ -42,4 +51,15 @@ export const logOut = async () => {
     .then(console.log("the user logged out"))
 
     .catch((err) => console.log(err.message));
+};
+
+export const db = getFirestore(firebaseApp);
+
+export const createAdminDocumentFromAuth = async (uid, email) => {
+  const adminsColRef = collection(db, "admins");
+  const docRef = await addDoc(adminsColRef, { uid, email });
+};
+
+export const authChange = () => {
+  onAuthStateChanged(auth, (user) => console.log(user));
 };
