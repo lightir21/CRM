@@ -1,5 +1,9 @@
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
+import { auth } from "../../utils/firebase/firebase";
 import { loginUser } from "../../utils/redux/loginSlice";
 import { logout } from "../../utils/redux/logoutSlice.js";
 import style from "./login.module.scss";
@@ -10,8 +14,17 @@ const initialState = {
 };
 
 const Login = ({ setIsRegistered }) => {
+  const currentUser = useSelector(
+    (state) => state?.currentUser?.currentUser?.uid
+  );
+
   const [values, setValues] = useState(initialState);
   const dispatch = useDispatch();
+  const nav = useNavigate();
+
+  useEffect(() => {
+    nav("/");
+  }, [, auth]);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -25,6 +38,7 @@ const Login = ({ setIsRegistered }) => {
 
     const { email, password } = values;
     dispatch(loginUser({ email, password }));
+    nav("/");
 
     setValues(initialState);
     e.target.reset();

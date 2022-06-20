@@ -7,7 +7,7 @@ const NewCustomer = ({ setIsPopupOpen, isPopupOpen }) => {
     <div
       className={style.container}
       onClick={(e) => {
-        if (e.target.className === "newCustomer_container__m6dQw") {
+        if (e.target.className === "newCustomer_container__YRu1z") {
           setIsPopupOpen(!isPopupOpen);
         }
       }}

@@ -11,4 +11,9 @@ export const store = configureStore({
     currentUser: currentUserReducer,
     logout: logoutReducer,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

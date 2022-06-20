@@ -11,31 +11,36 @@ import { auth } from "./utils/firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux/es/exports";
 import { setCurrentUser } from "./utils/redux/currentUserSlice";
+import { useState } from "react";
 
 function App() {
   const dispatch = useDispatch();
   const currentUser = useSelector(
     (state) => state?.currentUser?.currentUser?.uid
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     onAuthStateChanged(auth, (user) => {
       dispatch(setCurrentUser(user));
+      setIsLoading(false);
     });
+    <Navigate to="/" />;
     console.log(currentUser);
-  }, []);
+  }, [auth]);
 
   const RequiredAuth = ({ children }) => {
-    return currentUser ? children : <Navigate to="/" />;
+    return currentUser ? children : <Navigate to="home" />;
   };
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route index element={currentUser ? <Dashboard /> : <Home />} />
+          <Route path="home" element={<Home />} />
           <Route
-            path="dashboard"
+            index
             element={
               <RequiredAuth>
                 <Dashboard />

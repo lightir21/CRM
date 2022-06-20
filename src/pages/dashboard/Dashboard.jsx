@@ -6,7 +6,7 @@ import NewCustomer from "../../components/newCustomer/NewCustomer";
 import style from "./dashboard.module.scss";
 
 const Dashboard = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   return (
     <div className={style.dashboard}>
       <Navbar setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen} />
