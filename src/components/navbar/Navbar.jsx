@@ -11,7 +11,7 @@ const Navbar = ({ setIsPopupOpen, isPopupOpen }) => {
   return (
     <div className={style.navbar}>
       <div className={style.right}>
-        <button className={style.text} onClick={() => dispatch(logout())}>
+        <button className={style.button} onClick={() => dispatch(logout())}>
           התנתק
         </button>
         <p className={style.text}>

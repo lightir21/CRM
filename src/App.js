@@ -2,7 +2,13 @@ import "./styles/global-styles.scss";
 import "./styles/global-variables.scss";
 import "./styles/css-reset.scss";
 import Home from "./pages/home/Home.jsx";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Customer from "./pages/customer/Customer";
 import { useEffect } from "react";
@@ -12,27 +18,32 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux/es/exports";
 import { setCurrentUser } from "./utils/redux/currentUserSlice";
 import { useState } from "react";
+import Loading from "./components/loading/Loading.jsx";
 
 function App() {
   const dispatch = useDispatch();
-  const currentUser = useSelector(
-    (state) => state?.currentUser?.currentUser?.uid
-  );
-  const [isLoading, setIsLoading] = useState(false);
+
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
     onAuthStateChanged(auth, (user) => {
       dispatch(setCurrentUser(user));
       setIsLoading(false);
+      localStorage.setItem(
+        "currentUser",
+        JSON.stringify(user?.stsTokenManager.accessToken)
+      );
     });
-    <Navigate to="/" />;
+
     console.log(currentUser);
   }, [auth]);
 
   const RequiredAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="home" />;
   };
+  console.log(currentUser);
 
   return (
     <BrowserRouter>

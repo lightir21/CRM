@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import style from "./signup.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { signUpUser } from "../../utils/redux/signupSlice";
+import {
+  createAdminDocumentFromAuth,
+  signup,
+} from "../../utils/firebase/firebase";
 
 const initialState = {
   email: "",
@@ -12,7 +16,7 @@ const initialState = {
 const Signup = ({ setIsRegistered }) => {
   const [values, setValues] = useState(initialState);
   const dispatch = useDispatch();
-  const { signup } = useSelector((state) => state.signup);
+  // const { signup } = useSelector((state) => state.signup);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -24,8 +28,20 @@ const Signup = ({ setIsRegistered }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const { email, password, confirmPassword } = values;
+    if (password !== confirmPassword) return;
 
-    dispatch(signUpUser({ email, password, confirmPassword }));
+    try {
+      const { user } = await signup(email, password);
+      console.log(user);
+      await createAdminDocumentFromAuth(user, { email });
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        alert("Cannot create user, email already in use");
+      } else {
+        console.log("user creation encountered an error", error);
+      }
+    }
+
     setValues(initialState);
     e.target.reset();
   };

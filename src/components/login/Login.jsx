@@ -1,4 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
+import { useCallback } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,17 +15,11 @@ const initialState = {
 };
 
 const Login = ({ setIsRegistered }) => {
-  const currentUser = useSelector(
-    (state) => state?.currentUser?.currentUser?.uid
-  );
+  const currentUser = useSelector((state) => state?.currentUser?.currentUser);
+  const nav = useNavigate();
 
   const [values, setValues] = useState(initialState);
   const dispatch = useDispatch();
-  const nav = useNavigate();
-
-  useEffect(() => {
-    nav("/");
-  }, [, auth]);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -38,10 +33,11 @@ const Login = ({ setIsRegistered }) => {
 
     const { email, password } = values;
     dispatch(loginUser({ email, password }));
-    nav("/");
 
     setValues(initialState);
     e.target.reset();
+    localStorage.setItem("currentUser", JSON.stringify());
+    nav("/");
   };
 
   return (
@@ -78,7 +74,9 @@ const Login = ({ setIsRegistered }) => {
       <button className={style.btn} onClick={() => setIsRegistered(false)}>
         אין לך משתמש? הרשם
       </button>
-      <button onClick={() => dispatch(logout())}>התנתק</button>
+      <button className={style.logoutBtn} onClick={() => dispatch(logout())}>
+        התנתק
+      </button>
     </div>
   );
 };
