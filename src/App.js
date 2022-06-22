@@ -41,7 +41,9 @@ function App() {
   }, [auth]);
 
   const RequiredAuth = ({ children }) => {
-    return currentUser ? children : <Navigate to="home" />;
+    if (!isLoading) {
+      return currentUser ? children : <Navigate to="home" />;
+    }
   };
   console.log(currentUser);
 
