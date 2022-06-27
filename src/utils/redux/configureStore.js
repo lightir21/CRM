@@ -3,6 +3,7 @@ import currentUserReducer from "./currentUserSlice";
 import loginReducer from "./loginSlice";
 import signupReducer from "./signupSlice";
 import logoutReducer from "./logoutSlice";
+import customersReducer from "./customersSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     signup: signupReducer,
     currentUser: currentUserReducer,
     logout: logoutReducer,
+    customers: customersReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
