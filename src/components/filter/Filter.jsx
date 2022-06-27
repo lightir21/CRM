@@ -1,11 +1,19 @@
 import React from "react";
+import { useState } from "react";
+import DateFilter from "../dateFilter/DateFilter";
 import style from "./filter.module.scss";
 
 const Filter = () => {
+  const [isDateOpen, setIsDateOpen] = useState(true);
+
   return (
     <div className={style.filter}>
-      <button>חודש</button>
-      <button>שם</button>
+      <div className={style.date}>
+        <DateFilter />
+      </div>
+
+      <input type="text" className={style.nameFilter} />
+
       <button>מוצר</button>
       <button>חברה</button>
       <button>משימה</button>

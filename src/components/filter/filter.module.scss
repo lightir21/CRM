@@ -7,4 +7,13 @@
   padding: 1rem 0;
   background-color: var(--white-001);
   border-bottom: 1px solid var(--gray-008);
+
+  .date {
+    background-image: url("../../assets/down-arrow-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 1.2rem;
+    width: 7rem;
+    padding: 0.2rem;
+  }
 }

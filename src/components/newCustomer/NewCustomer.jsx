@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import style from "./newCustomer.module.scss";
 import { AiOutlineClose } from "react-icons/ai";
-import moment from "moment";
+import { createNewCustomer } from "../../utils/firebase/firebase";
+import { useSelector } from "react-redux";
+import { async } from "@firebase/util";
 
 const initialState = {
   fullName: "",
@@ -17,10 +19,18 @@ const initialState = {
 const NewCustomer = ({ setIsPopupOpen, isPopupOpen }) => {
   const [values, setValues] = useState(initialState);
 
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setValues({ ...values, [name]: value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    await createNewCustomer(currentUser, values);
   };
 
   return (
@@ -42,7 +52,7 @@ const NewCustomer = ({ setIsPopupOpen, isPopupOpen }) => {
           <AiOutlineClose className={style.icon} />
         </div>
 
-        <form className={style.form}>
+        <form className={style.form} onSubmit={onSubmit}>
           <div className={style.inputBox}>
             <label htmlFor="fullName">שם מלא</label>
             <input

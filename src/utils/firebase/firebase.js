@@ -6,6 +6,10 @@ import {
   doc,
   setDoc,
   getDoc,
+  query,
+  where,
+  collectionGroup,
+  getDocs,
 } from "firebase/firestore";
 
 import {
@@ -51,8 +55,6 @@ export const createAdminDocumentFromAuth = async (adminAuth) => {
   if (!adminAuth) return;
   const adminDocRef = doc(db, "admins", adminAuth.uid);
 
-  const adminSnapshot = await getDoc(adminDocRef);
-
   const { email } = adminAuth;
 
   try {
@@ -62,4 +64,32 @@ export const createAdminDocumentFromAuth = async (adminAuth) => {
   }
 
   return adminDocRef;
+};
+
+export const createNewCustomer = async (adminAuth, data) => {
+  if (!adminAuth) return;
+
+  const { uid } = adminAuth;
+
+  const adminDocRef = doc(db, "admins", uid);
+  const adminColRef = collection(adminDocRef, "customers");
+
+  try {
+    await addDoc(adminColRef, data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const queryForCustomer = async (adminAuth, id) => {
+  if (!adminAuth) return;
+
+  const { uid } = adminAuth;
+
+  const customers = query(
+    collectionGroup(db, "customers"),
+    where("id", "==", "123123")
+  );
+  const customerSnapshot = await getDocs(customers);
+  console.log(customerSnapshot);
 };
