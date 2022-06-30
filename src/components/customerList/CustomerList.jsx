@@ -10,6 +10,7 @@ const CustomerList = () => {
   const filteredCustomersChange = useSelector(
     (state) => state?.customers.filteredCustomersChange
   );
+  const productFilter = useSelector((state) => state?.customers?.productFilter);
   console.log(filteredCustomersChange);
   const [filteredCustomers, setFilteredCustomers] = useState(data);
 
@@ -20,11 +21,13 @@ const CustomerList = () => {
           return customer.details.name.includes(filteredCustomersChange);
         });
       });
+    } else if (productFilter) {
+      const { company, category, product } = productFilter;
     } else {
       setFilteredCustomers(data);
     }
     console.log(filteredCustomers);
-  }, [filteredCustomersChange]);
+  }, [filteredCustomersChange, productFilter]);
 
   return (
     <div className={style.customerList}>

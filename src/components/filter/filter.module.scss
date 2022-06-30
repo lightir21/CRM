@@ -30,4 +30,12 @@
       color: rgba(102, 102, 102, 0.438);
     }
   }
+
+  .productContainer {
+    position: relative;
+
+    .product {
+      cursor: pointer;
+    }
+  }
 }

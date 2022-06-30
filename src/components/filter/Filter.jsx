@@ -4,17 +4,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setFilteredCustomersChange } from "../../utils/redux/customersSlice";
 import DateFilter from "../dateFilter/DateFilter";
+import ProductFilter from "../productFilter/ProductFilter";
 import style from "./filter.module.scss";
 
 const Filter = () => {
-  const [isDateOpen, setIsDateOpen] = useState(true);
+  const [isProductOpen, setIsProductOpen] = useState(true);
   const [name, setName] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setFilteredCustomersChange(name));
   }, [name]);
-
-  const dispatch = useDispatch();
 
   return (
     <div className={style.filter}>
@@ -30,8 +30,17 @@ const Filter = () => {
           return setName(e.target.value);
         }}
       />
-
-      <button>מוצר</button>
+      <div className={style.productContainer}>
+        <div
+          className={style.product}
+          onClick={() => {
+            setIsProductOpen(!isProductOpen);
+          }}
+        >
+          מוצר
+        </div>
+        {isProductOpen && <ProductFilter />}
+      </div>
       <button>חברה</button>
       <button>משימה</button>
       <button>מסתיים החודש</button>
