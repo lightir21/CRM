@@ -25,9 +25,7 @@ const Dashboard = () => {
       <Navbar setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen} />
       <Filter />
       <CustomerList />
-      <button onClick={() => queryForCustomer(currentUser, "123123")}>
-        click me for user
-      </button>
+      <button onClick={() => {}}>click me for user</button>
       {isPopupOpen && (
         <NewCustomer
           setIsPopupOpen={setIsPopupOpen}

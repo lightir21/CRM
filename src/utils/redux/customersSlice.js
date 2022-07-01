@@ -8,6 +8,7 @@ const initialState = {
     category: null,
     product: null,
   },
+  currentCustomer: null,
 };
 
 export const customersSlice = createSlice({
@@ -25,10 +26,17 @@ export const customersSlice = createSlice({
       state.productFilter.category = action.payload.category;
       state.productFilter.product = action.payload.product;
     },
+    setCurrentCustomer: (state, action) => {
+      state.currentCustomer = action.payload;
+    },
   },
 });
 
-export const { setCustomers, setFilteredCustomersChange, setProductFilter } =
-  customersSlice.actions;
+export const {
+  setCustomers,
+  setFilteredCustomersChange,
+  setProductFilter,
+  setCurrentCustomer,
+} = customersSlice.actions;
 
 export default customersSlice.reducer;

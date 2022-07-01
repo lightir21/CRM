@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import style from "./newCustomer.module.scss";
 import { AiOutlineClose } from "react-icons/ai";
-import { createNewCustomer } from "../../utils/firebase/firebase";
-import { useSelector } from "react-redux";
+import {
+  createNewCustomer,
+  queryForCustomer,
+} from "../../utils/firebase/firebase";
+import { useDispatch, useSelector } from "react-redux";
 import { async } from "@firebase/util";
+import { setCurrentCustomer } from "../../utils/redux/customersSlice";
 
 const initialState = {
   fullName: "",
@@ -14,23 +18,31 @@ const initialState = {
   employment: "שכיר",
   smoke: "מעשן",
   health: "תקין",
+  admin: "",
 };
 
 const NewCustomer = ({ setIsPopupOpen, isPopupOpen }) => {
   const [values, setValues] = useState(initialState);
+
+  const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.currentUser.currentUser);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setValues({ ...values, [name]: value });
+    setValues({ ...values, [name]: value, admin: currentUser.uid });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     await createNewCustomer(currentUser, values);
+    const { id } = values;
+    let customerId = await queryForCustomer(currentUser, id);
+
+    console.log(customerId, id);
+    dispatch(setCurrentCustomer(customerId));
   };
 
   return (

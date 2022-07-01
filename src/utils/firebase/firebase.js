@@ -20,6 +20,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
+import { setCurrentCustomer } from "../redux/customersSlice";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -83,13 +84,17 @@ export const createNewCustomer = async (adminAuth, data) => {
 
 export const queryForCustomer = async (adminAuth, id) => {
   if (!adminAuth) return;
-
+  let customer = "";
   const { uid } = adminAuth;
 
   const customers = query(
     collectionGroup(db, "customers"),
-    where("id", "==", "123123")
+    where("id", "==", id),
+    where("admin", "==", uid)
   );
   const customerSnapshot = await getDocs(customers);
-  console.log(customerSnapshot);
+  customerSnapshot.forEach((doc) => {
+    return (customer = doc.data());
+  });
+  return customer;
 };
