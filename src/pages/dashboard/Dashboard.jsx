@@ -4,34 +4,45 @@ import CustomerList from "../../components/customerList/CustomerList";
 import Filter from "../../components/filter/Filter";
 import Navbar from "../../components/navbar/Navbar";
 import NewCustomer from "../../components/newCustomer/NewCustomer";
-import { queryForCustomer } from "../../utils/firebase/firebase";
+import {
+  getCustomersList,
+  queryForCustomer,
+  updateCustomer,
+} from "../../utils/firebase/firebase";
 import style from "./dashboard.module.scss";
 import data from "../../mockData/clientsData.json";
 import { setCustomers } from "../../utils/redux/customersSlice.js";
+import Customer from "../customer/Customer";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isCustomerOpen, setIsCustomerOpen] = useState(false);
+
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
+  // const customerId = useSelector((state) => state.customers.currentCustomerId);
+
   useEffect(() => {
-    dispatch(setCustomers(data));
+    getCustomersList(currentUser).then((customers) =>
+      dispatch(setCustomers(customers))
+    );
   }, []);
 
-  dispatch(setCustomers(data));
-
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const currentUser = useSelector((state) => state.currentUser.currentUser);
   return (
-    <div className={style.dashboard}>
-      <Navbar setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen} />
-      <Filter />
-      <CustomerList />
-      <button onClick={() => {}}>click me for user</button>
-      {isPopupOpen && (
-        <NewCustomer
-          setIsPopupOpen={setIsPopupOpen}
-          isPopupOpen={isPopupOpen}
-        />
-      )}
+    <div className={style.dashboardContainer}>
+      <div className={style.dashboard}>
+        <Navbar setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen} />
+        <Filter />
+        <CustomerList setIsCustomerOpen={setIsCustomerOpen} />
+        {isPopupOpen && (
+          <NewCustomer
+            setIsPopupOpen={setIsPopupOpen}
+            isPopupOpen={isPopupOpen}
+          />
+        )}
+      </div>
+      {isCustomerOpen && <Customer className={style.customer} />}
     </div>
   );
 };

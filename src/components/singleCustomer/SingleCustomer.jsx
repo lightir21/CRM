@@ -2,22 +2,26 @@ import React from "react";
 import style from "./singleCustomer.module.scss";
 import { AiOutlineMail } from "react-icons/ai";
 import { TbBrandTelegram } from "react-icons/tb";
+import { useDispatch, useSelector } from "react-redux";
+import { queryForCustomer } from "../../utils/firebase/firebase";
+import { setCurrentCustomer } from "../../utils/redux/customersSlice";
 
-const SignleCustomer = ({ data }) => {
-  const { details, id } = data;
-  const { name, clientId, addrress, email, phone } = details;
+const SignleCustomer = ({ data, setIsCustomerOpen }) => {
+  const { date, email, id, phone, fullName } = data;
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
+  const dispatch = useDispatch();
 
   if (data) {
     return (
       <div className={style.singleCustomer}>
         <div className={style.name}>
-          <p>{name}</p>
+          <p>{fullName}</p>
         </div>
         <div className={style.id}>
-          <p>{clientId}</p>
+          <p>{id}</p>
         </div>
         <div className={style.address}>
-          <p>{addrress}</p>
+          <p></p>
         </div>
         <div className={style.email}>
           <p> {email} </p>
@@ -29,7 +33,17 @@ const SignleCustomer = ({ data }) => {
           <AiOutlineMail className={style.icon} />
           <TbBrandTelegram className={style.icon} />
         </div>
-        <button className={style.button}>מעבר לדף לקוח</button>
+        <button
+          className={style.button}
+          onClick={() => {
+            queryForCustomer(currentUser, id).then((customer) => {
+              dispatch(setCurrentCustomer(customer));
+              setIsCustomerOpen(true);
+            });
+          }}
+        >
+          מעבר לדף לקוח
+        </button>
       </div>
     );
   }

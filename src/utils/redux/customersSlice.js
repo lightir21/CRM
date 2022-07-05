@@ -9,6 +9,7 @@ const initialState = {
     product: null,
   },
   currentCustomer: null,
+  currentCustomerId: null,
 };
 
 export const customersSlice = createSlice({
@@ -27,7 +28,8 @@ export const customersSlice = createSlice({
       state.productFilter.product = action.payload.product;
     },
     setCurrentCustomer: (state, action) => {
-      state.currentCustomer = action.payload;
+      state.currentCustomer = action.payload.currentCustomer;
+      state.currentCustomerId = action.payload.id;
     },
   },
 });

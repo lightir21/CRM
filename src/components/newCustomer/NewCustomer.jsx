@@ -8,6 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { async } from "@firebase/util";
 import { setCurrentCustomer } from "../../utils/redux/customersSlice";
+import { useEffect } from "react";
 
 const initialState = {
   fullName: "",
@@ -36,13 +37,19 @@ const NewCustomer = ({ setIsPopupOpen, isPopupOpen }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await createNewCustomer(currentUser, values);
+      const { id } = values;
+      queryForCustomer(currentUser, id).then((customer) =>
+        dispatch(setCurrentCustomer(customer))
+      );
+    } catch (error) {
+      console.log(error.meesage);
+    }
 
-    await createNewCustomer(currentUser, values);
-    const { id } = values;
-    let customerId = await queryForCustomer(currentUser, id);
-
-    console.log(customerId, id);
-    dispatch(setCurrentCustomer(customerId));
+    setValues(initialState);
+    e.target.reset();
+    setIsPopupOpen(!isPopupOpen);
   };
 
   return (

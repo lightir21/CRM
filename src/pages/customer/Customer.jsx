@@ -17,21 +17,29 @@ import CustomerNotes from "../../components/customerNotes/CustomerNotes";
 import CustomerCommonQuestions from "../../components/customerCommonQuestions/CustomerCommonQuestions";
 import CustomerCommonMsgs from "../../components/customerCommonMsgs/CustomerCommonMsgs";
 import CurstomerFiles from "../../components/customerFiles/CurstomerFiles";
+import { useSelector } from "react-redux";
 
 const Customer = () => {
+  const currentCustomer = useSelector(
+    (state) => state?.customers?.currentCustomer
+  );
+
+  const { fullName, date, id, employment, health, smoke, phone, email } =
+    currentCustomer;
+
   return (
     <div className={style.customer}>
       <div className={style.tabs}>
-        <p className={`${style.tab} ${style.active}`}>ישראל ישראלי</p>
+        <p className={`${style.tab} ${style.active}`}>{fullName}</p>
         <p className={style.tab}>אביחי ישראלי</p>
       </div>
       <div className={style.container}>
         <div className={style.right}>
-          <CustomerInfo />
+          <CustomerInfo currentCustomer={currentCustomer} />
         </div>
         <div className={style.left}>
           <CustomerClientStatus />
-          <CustomerContactInfo />
+          <CustomerContactInfo currentCustomer={currentCustomer} />
           <CustomerContacts />
         </div>
       </div>

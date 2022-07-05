@@ -10,7 +10,12 @@ import {
   where,
   collectionGroup,
   getDocs,
+  updateDoc,
 } from "firebase/firestore";
+
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 import {
   getAuth,
@@ -30,9 +35,9 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
-const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export const db = getFirestore(firebaseApp);
+export const db = firebase.firestore();
 export const auth = getAuth();
 
 export const signup = async (email, password, confirmPassword) => {
@@ -94,7 +99,32 @@ export const queryForCustomer = async (adminAuth, id) => {
   );
   const customerSnapshot = await getDocs(customers);
   customerSnapshot.forEach((doc) => {
-    return (customer = doc.data());
+    return (customer = { currentCustomer: doc.data(), id: doc.id });
   });
   return customer;
+};
+
+export const updateCustomer = async (adminAuth, currentCustomerId, data) => {
+  if (!adminAuth) return;
+  const { uid } = adminAuth;
+  const adminDocRef = db.doc(`admins/${uid}/customers/${currentCustomerId}`);
+
+  await updateDoc(adminDocRef, data);
+};
+
+export const getCustomersList = async (adminAuth) => {
+  if (!adminAuth) return;
+
+  const { uid } = adminAuth;
+  const customers = [];
+
+  const customersCollectionSnapShot = await getDocs(
+    collection(db, `admins/${uid}/customers`)
+  );
+
+  customersCollectionSnapShot.forEach((doc) => {
+    return customers.push(doc.data());
+  });
+
+  return customers;
 };

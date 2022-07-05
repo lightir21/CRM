@@ -2,23 +2,26 @@ import React from "react";
 import style from "./customerList.module.scss";
 import SingleCustomer from "../singleCustomer/SingleCustomer";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const CustomerList = () => {
-  const data = useSelector((state) => state?.customers.customers.clients);
+const CustomerList = ({ setIsCustomerOpen }) => {
+  const data = useSelector((state) => state?.customers?.customers);
+
   const filteredCustomersChange = useSelector(
     (state) => state?.customers.filteredCustomersChange
   );
+
   const productFilter = useSelector((state) => state?.customers?.productFilter);
   console.log(filteredCustomersChange);
-  const [filteredCustomers, setFilteredCustomers] = useState(data);
+  const [filteredCustomers, setFilteredCustomers] = useState(null);
 
   useEffect(() => {
+    setFilteredCustomers(data);
+
     if (filteredCustomersChange) {
       setFilteredCustomers(() => {
         return data.filter((customer) => {
-          return customer.details.name.includes(filteredCustomersChange);
+          return customer.fullName.includes(filteredCustomersChange);
         });
       });
     } else if (productFilter) {
@@ -26,14 +29,20 @@ const CustomerList = () => {
     } else {
       setFilteredCustomers(data);
     }
-    console.log(filteredCustomers);
-  }, [filteredCustomersChange, productFilter]);
+  }, [filteredCustomersChange, productFilter, data]);
 
+  console.log(filteredCustomers);
   return (
     <div className={style.customerList}>
       {filteredCustomers &&
         filteredCustomers?.map((customer) => {
-          return <SingleCustomer data={customer} key={customer.id} />;
+          return (
+            <SingleCustomer
+              setIsCustomerOpen={setIsCustomerOpen}
+              data={customer}
+              key={customer.id}
+            />
+          );
         })}
     </div>
   );

@@ -1,5 +1,11 @@
-.dashboard {
+.dashboardContainer {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+
+  .dashboard {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    flex: 1;
+  }
 }

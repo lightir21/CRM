@@ -8,7 +8,7 @@ import ProductFilter from "../productFilter/ProductFilter";
 import style from "./filter.module.scss";
 
 const Filter = () => {
-  const [isProductOpen, setIsProductOpen] = useState(true);
+  const [isProductOpen, setIsProductOpen] = useState(false);
   const [name, setName] = useState(null);
   const dispatch = useDispatch();
 
