@@ -13,6 +13,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
+import { getStorage } from "firebase/storage";
+
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
@@ -36,6 +38,8 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+export const storage = getStorage(firebaseApp);
 
 export const db = firebase.firestore();
 export const auth = getAuth();
