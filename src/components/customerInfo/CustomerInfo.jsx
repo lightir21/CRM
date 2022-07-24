@@ -1,7 +1,9 @@
 import React from "react";
 import style from "./customerInfo.module.scss";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineCheck } from "react-icons/ai";
 import { useState } from "react";
+import { updateCustomer } from "../../utils/firebase/firebase";
+import { useSelector } from "react-redux";
 
 const CustomerInfo = ({ currentCustomer }) => {
   const { fullName, date, id, employment, health, smoke } = currentCustomer;
@@ -14,6 +16,11 @@ const CustomerInfo = ({ currentCustomer }) => {
     health,
     smoke,
   });
+
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
+  const currentCustomerId = useSelector(
+    (state) => state.customers.currentCustomerId
+  );
 
   const ageCalculator = (date) => {
     if (!date) return;
@@ -30,10 +37,16 @@ const CustomerInfo = ({ currentCustomer }) => {
     setValues({ ...values, [name]: value });
   };
 
+  const handleSubmit = (e, data) => {
+    e.preventDefault();
+    updateCustomer(currentUser, currentCustomerId, data);
+    setIsEditOn(false);
+  };
+
   return (
     <div className={style.customerInfo}>
       {isEditOn ? (
-        <form>
+        <form onSubmit={() => handleSubmit(values)}>
           <input
             type="text"
             name="fullName"
@@ -103,6 +116,10 @@ const CustomerInfo = ({ currentCustomer }) => {
               <option value="לא תקין">לא תקין</option>
             </select>
           </div>
+          <AiOutlineCheck
+            className={style.acceptEdit}
+            onClick={(e) => handleSubmit(e, values)}
+          />
         </form>
       ) : (
         <>
