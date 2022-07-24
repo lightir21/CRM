@@ -10,6 +10,7 @@ const initialState = {
   },
   currentCustomer: null,
   currentCustomerId: null,
+  currentFileUrl: null,
 };
 
 export const customersSlice = createSlice({
@@ -31,6 +32,9 @@ export const customersSlice = createSlice({
       state.currentCustomer = action.payload.currentCustomer;
       state.currentCustomerId = action.payload.id;
     },
+    setCurrentFileUrl: (state, action) => {
+      state.currentFileUrl = action.payload;
+    },
   },
 });
 
@@ -39,6 +43,7 @@ export const {
   setFilteredCustomersChange,
   setProductFilter,
   setCurrentCustomer,
+  setCurrentFileUrl,
 } = customersSlice.actions;
 
 export default customersSlice.reducer;

@@ -13,7 +13,12 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import { getStorage } from "firebase/storage";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -82,10 +87,10 @@ export const createNewCustomer = async (adminAuth, data) => {
   const { uid } = adminAuth;
 
   const adminDocRef = doc(db, "admins", uid);
-  const adminColRef = collection(adminDocRef, "customers");
+  const customersColRef = collection(adminDocRef, "customers");
 
   try {
-    await addDoc(adminColRef, data);
+    await addDoc(customersColRef, data);
   } catch (err) {
     console.log(err);
   }
@@ -131,4 +136,44 @@ export const getCustomersList = async (adminAuth) => {
   });
 
   return customers;
+};
+
+export const queryForSubcollectionInCustomer = async (
+  adminAuth,
+  currentCustomerId,
+  subCollectionName
+) => {
+  if (!adminAuth) return;
+
+  let data = [];
+
+  const { uid } = adminAuth;
+
+  const collectionSnapShot = await getDocs(
+    collection(
+      db,
+      `admins/${uid}/customers/${currentCustomerId}/${subCollectionName}`
+    )
+  );
+
+  collectionSnapShot.forEach((doc) => {
+    return data.push(doc.data());
+  });
+  return data;
+};
+
+export const addCustomerFiles = async (adminAuth, currentCustomerId, data) => {
+  if (!adminAuth) return;
+
+  const { uid } = adminAuth;
+
+  const customerDocRef = doc(db, "admins", uid, "customers", currentCustomerId);
+  const filesColRef = collection(customerDocRef, "files");
+
+  try {
+    await addDoc(filesColRef, data);
+    console.log("upload succes");
+  } catch (err) {
+    console.log(err);
+  }
 };

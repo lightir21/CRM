@@ -4,14 +4,38 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  position: relative;
 
-  h2 {
+  form {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+
+  input {
+    width: 40%;
+  }
+
+  input::placeholder {
+    text-align: center;
+  }
+
+  .name {
     font-size: 2.4rem;
     color: green;
     font-weight: 800;
   }
 
   .id {
+    color: green;
+    font-weight: 800;
+  }
+
+  .idLabel {
     color: green;
     font-weight: 800;
   }
@@ -24,5 +48,24 @@
 
   strong {
     font-weight: 800;
+  }
+
+  .editIcon {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  select {
+    background-image: url("../../assets/down-arrow-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 1.2rem;
+    width: 7rem;
+    padding: 0.2rem;
+    padding-left: 1rem;
+    font-size: 1.4rem;
+    background-color: #fff;
   }
 }

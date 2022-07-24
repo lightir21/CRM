@@ -5,6 +5,7 @@
   font-size: 1.6rem;
   background-color: #fff;
   margin: 1rem;
+  position: relative;
 
   .subtitles {
     color: var(--gray-002);
@@ -18,10 +19,13 @@
   .fileList {
     align-self: flex-start;
     padding: 1rem;
+  }
 
-    .addFile {
-      font-size: 3.6rem;
-      cursor: pointer;
-    }
+  .addFile {
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
 }

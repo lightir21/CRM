@@ -7,6 +7,7 @@ import NewCustomer from "../../components/newCustomer/NewCustomer";
 import {
   getCustomersList,
   queryForCustomer,
+  queryForSubcollectionInCustomer,
   updateCustomer,
 } from "../../utils/firebase/firebase";
 import style from "./dashboard.module.scss";
